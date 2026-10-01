@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e0f2fe" />
+      <stop offset="100%" stop-color="#bae6fd" />
+    </linearGradient>
+    <linearGradient id="primaryBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0369a1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Fundo -->
+  <rect width="1000" height="450" rx="16" fill="url(#bgGrad)" />
+  <path d="M 0,340 C 300,280 600,380 1000,310 L 1000,450 L 0,450 Z" fill="#ffffff" opacity="0.5" />
+  <path d="M 0,370 C 400,310 700,410 1000,350 L 1000,450 L 0,450 Z" fill="#38bdf8" opacity="0.3" />
+
+  <!-- Título Superior -->
+  <text x="500" y="110" font-family="'Segoe UI', system-ui, -apple-system, sans-serif" font-size="44" font-weight="900" fill="#0c4a6e" text-anchor="middle" letter-spacing="2">NOSSOS VALORES</text>
+
+  <!-- 3 Pilares com Ícones -->
+  <!-- Pilar 1: Transparência -->
+  <g transform="translate(220, 240)">
+    <rect x="-100" y="-80" width="200" height="170" rx="12" fill="#ffffff" opacity="0.8" />
+    <!-- Ícone Cubo Transparente -->
+    <path d="M 0,-40 L 30,-25 L 0,-10 L -30,-25 Z" fill="#38bdf8" />
+    <path d="M -30,-25 L 0,-10 L 0,25 L -30,10 Z" fill="#0284c7" />
+    <path d="M 0,-10 L 30,-25 L 30,10 L 0,25 Z" fill="#0369a1" />
+    <text x="0" y="65" font-family="'Segoe UI', sans-serif" font-size="20" font-weight="700" fill="#0c4a6e" text-anchor="middle">TRANSPARÊNCIA</text>
+  </g>
+
+  <!-- Pilar 2: Empatia -->
+  <g transform="translate(500, 240)">
+    <rect x="-100" y="-80" width="200" height="170" rx="12" fill="#ffffff" opacity="0.8" />
+    <!-- Ícone Mãos dadas em Coração -->
+    <path d="M 0,-20 C -15,-40 -40,-20 -20,10 L 0,25 L 20,10 C 40,-20 15,-40 0,-20 Z" fill="#0284c7" />
+    <text x="0" y="65" font-family="'Segoe UI', sans-serif" font-size="20" font-weight="700" fill="#0c4a6e" text-anchor="middle">EMPATIA</text>
+  </g>
+
+  <!-- Pilar 3: Respeito -->
+  <g transform="translate(780, 240)">
+    <rect x="-100" y="-80" width="200" height="170" rx="12" fill="#ffffff" opacity="0.8" />
+    <!-- Ícone Ramos de Oliveira / Coroa -->
+    <path d="M -20,20 C -35,0 -20,-30 0,-35 C 20,-30 35,0 20,20" fill="none" stroke="#0284c7" stroke-width="6" stroke-linecap="round" />
+    <circle cx="0" cy="-5" r="10" fill="#38bdf8" />
+    <text x="0" y="65" font-family="'Segoe UI', sans-serif" font-size="20" font-weight="700" fill="#0c4a6e" text-anchor="middle">RESPEITO</text>
+  </g>
+</svg>

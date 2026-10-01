@@ -1,0 +1,496 @@
+/* ==========================================================
+   DESIGN SYSTEM – Esperança Viva
+   ========================================================== */
+:root {
+  /* ---------- Cores primárias ---------- */
+  --primary-color: #0a305c;     /* azul-marinho: marca, títulos, botões */
+  --primary-hover: #1d4f8c;     /* hover dos botões primários */
+  --secondary-color: #3d6f8a;   /* botões secundários */
+  --accent-color: #a0c0f0;      /* fundo de destaque (hero) */
+
+  /* ---------- Neutros ---------- */
+  --bg-color: #f8f9fa;          /* fundo da página */
+  --surface-color: #ffffff;     /* cards, formulário, cabeçalho */
+  --text-color: #212529;        /* texto principal */
+  --text-muted: #666666;        /* textos de apoio */
+  --border-color: #cccccc;      /* bordas de campos */
+  --footer-bg: #1a1a1a;         /* rodapé */
+
+  /* ---------- Feedback ---------- */
+  --error-color: #d32f2f;
+  --success-color: #81c784;
+
+  /* ---------- Tipografia (escala 1.25) ---------- */
+  --font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-size-sm: 0.875rem;     /* 14px */
+  --font-size-base: 1rem;       /* 16px */
+  --font-size-lg: 1.25rem;      /* 20px */
+  --font-size-xl: 1.563rem;     /* 25px */
+  --font-size-2xl: 1.953rem;    /* 31px */
+  --font-size-3xl: 2.441rem;    /* 39px */
+  --line-height: 1.6;
+
+  /* ---------- Espaçamentos (base 8px) ---------- */
+  --space-1: 0.25rem;           /* 4px  */
+  --space-2: 0.5rem;            /* 8px  */
+  --space-3: 1rem;              /* 16px */
+  --space-4: 1.5rem;            /* 24px */
+  --space-5: 2rem;              /* 32px */
+  --space-6: 3rem;              /* 48px */
+
+  /* ---------- Outros tokens ---------- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  --transition: 0.2s ease;
+}
+
+/* ==========================================================
+   RESET E BASE
+   ========================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height);
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+h1 { font-size: var(--font-size-2xl); line-height: 1.2; }  /* celular; cresce no tablet */
+h2 { font-size: var(--font-size-2xl); line-height: 1.25; margin-bottom: var(--space-3); }
+h3 { font-size: var(--font-size-xl);  line-height: 1.3;  margin-bottom: var(--space-2); }
+p  { font-size: var(--font-size-base); margin-bottom: var(--space-3); }
+
+h1, h2, h3 { color: var(--primary-color); }
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--primary-hover);
+  outline-offset: 2px;
+}
+
+/* ==========================================================
+   CABEÇALHO E NAVEGAÇÃO (Flexbox) – mobile first
+   ========================================================== */
+header {
+  background-color: var(--surface-color);
+  box-shadow: var(--shadow);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;        /* celular: logo em cima, menu embaixo */
+  align-items: center;
+  gap: var(--space-3);
+}
+
+header .logo img {
+  height: 48px;
+  width: auto;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+  gap: var(--space-2);
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 600;
+  padding: var(--space-2) 0;
+  border-bottom: 2px solid transparent;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+nav a[aria-current="page"],
+nav a:hover {
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
+}
+
+/* ==========================================================
+   LAYOUT MACRO – GRID DE 12 COLUNAS
+   O <main> de todas as páginas é um grid de 12 colunas.
+   Por padrão (celular) cada bloco ocupa as 12 colunas.
+   ========================================================== */
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 1140px;
+  margin: var(--space-5) auto;
+  padding: 0 var(--space-3);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--space-4);
+  row-gap: var(--space-5);
+}
+
+main > * {
+  grid-column: 1 / -1;           /* ocupa da coluna 1 até a 12 */
+  min-width: 0;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  background-color: var(--accent-color);
+  padding: var(--space-5) var(--space-3);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.hero h1 {
+  margin-bottom: var(--space-3);
+}
+
+.hero p {
+  font-size: var(--font-size-lg);
+}
+
+.hero br {
+  display: none;
+}
+
+/* ---------- Sobre: sub-grid de 12 colunas ---------- */
+.sobre {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-4);
+}
+
+.sobre > h2 {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+
+.sobre > br,
+.sobre article br {
+  display: none;
+}
+
+.sobre article {
+  grid-column: span 12;          /* celular: 1 por linha */
+  background: var(--surface-color);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.sobre article img {
+  width: 96px;
+  height: auto;
+  margin-bottom: var(--space-3);
+}
+
+/* ---------- Impacto (Flexbox interno) ---------- */
+.impacto ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+}
+
+.impacto li {
+  flex: 1 1 100%;                /* celular: 1 por linha */
+  background: var(--surface-color);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.impacto strong {
+  display: block;
+  font-size: var(--font-size-2xl);
+  color: var(--primary-color);
+}
+
+/* ---------- Lista de projetos: grid de 12 colunas ---------- */
+.projetos-lista {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-4);
+}
+
+.card-projeto {
+  grid-column: span 12;          /* celular: 1 card por linha */
+  background: var(--surface-color);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ==========================================================
+   BOTÕES
+   ========================================================== */
+.btn-primary,
+.btn-secondary,
+.btn-submit {
+  display: inline-block;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  color: var(--surface-color);
+  transition: background-color var(--transition);
+}
+
+.btn-primary,
+.btn-submit {
+  background-color: var(--primary-color);
+}
+
+.btn-primary:hover,
+.btn-submit:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  margin-top: var(--space-3);
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-color);
+}
+
+/* ==========================================================
+   FORMULÁRIO
+   ========================================================== */
+form {
+  background-color: var(--surface-color);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+}
+
+fieldset {
+  border: 1px solid var(--border-color);
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+  border-radius: var(--radius-md);
+}
+
+legend {
+  padding: 0 var(--space-2);
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--space-3);
+}
+
+.field-group label {
+  margin-bottom: var(--space-1);
+  font-weight: 600;
+}
+
+.field-group input,
+.field-group select,
+.field-group textarea {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  background-color: var(--surface-color);
+  color: var(--text-color);
+}
+
+.field-group input:focus,
+.field-group select:focus,
+.field-group textarea:focus {
+  outline: 2px solid var(--primary-color);
+  border-color: transparent;
+}
+
+.field-group input:user-invalid,
+.field-group select:user-invalid,
+.field-group textarea:user-invalid {
+  border-color: var(--error-color);
+  outline-color: var(--error-color);
+}
+
+.btn-submit {
+  width: 100%;                   /* celular: botão largura total */
+}
+
+small {
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-1);
+}
+
+/* ==========================================================
+   RODAPÉ
+   ========================================================== */
+footer {
+  background-color: var(--footer-bg);
+  color: var(--surface-color);
+  padding: var(--space-4);
+  text-align: center;
+  margin-top: auto;
+}
+
+footer p {
+  margin-bottom: var(--space-2);
+}
+
+footer a {
+  color: var(--success-color);
+}
+
+footer address {
+  font-style: normal;
+}
+
+/* ==========================================================
+   BREAKPOINTS (mobile first) – 5 cenários
+   base   : até 575px  – celulares pequenos
+   576px  : celulares grandes
+   768px  : tablets
+   992px  : notebooks
+   1200px : desktops
+   1400px : desktops panorâmicos
+   ========================================================== */
+
+/* 1) Celulares grandes – 576px */
+@media (min-width: 576px) {
+  main {
+    padding: 0 var(--space-4);
+  }
+
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: var(--space-3) var(--space-4);
+  }
+
+  nav ul {
+    flex-direction: row;
+    gap: var(--space-4);
+  }
+
+  .impacto li {
+    flex: 1 1 calc(50% - var(--space-3));  /* 2 por linha */
+  }
+
+  form {
+    padding: var(--space-4);
+  }
+
+  .btn-submit {
+    width: auto;
+  }
+}
+
+/* 2) Tablets – 768px */
+@media (min-width: 768px) {
+  h1 { font-size: var(--font-size-3xl); }
+
+  .hero {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .sobre article {
+    grid-column: span 6;         /* 2 por linha */
+  }
+
+  .sobre article:last-of-type {
+    grid-column: 1 / -1;         /* o 3º ocupa a linha inteira */
+  }
+
+  .card-projeto {
+    grid-column: span 6;         /* 2 cards por linha */
+  }
+
+  .form-container {
+    grid-column: 2 / span 10;    /* formulário em 10 colunas */
+  }
+}
+
+/* 3) Notebooks – 992px */
+@media (min-width: 992px) {
+  header {
+    padding: var(--space-3) var(--space-5);
+  }
+
+  .sobre article,
+  .sobre article:last-of-type {
+    grid-column: span 4;         /* 3 por linha */
+  }
+
+  .impacto li {
+    flex: 1 1 0;                 /* 3 lado a lado */
+  }
+
+  .card-projeto {
+    grid-column: span 4;         /* 3 cards por linha */
+  }
+
+  .form-container {
+    grid-column: 3 / span 8;     /* formulário centralizado em 8 colunas */
+  }
+
+  form {
+    padding: var(--space-5);
+  }
+}
+
+/* 4) Desktops – 1200px */
+@media (min-width: 1200px) {
+  main {
+    padding: 0 var(--space-5);
+  }
+
+  .hero {
+    grid-column: 2 / span 10;    /* hero mais estreito e centralizado */
+  }
+}
+
+/* 5) Desktops panorâmicos – 1400px */
+@media (min-width: 1400px) {
+  main {
+    max-width: 1320px;
+    column-gap: var(--space-5);
+  }
+
+  .hero {
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .hero p {
+    font-size: var(--font-size-xl);
+  }
+}
+
+/* Acessibilidade: reduz animações se o usuário preferir */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
